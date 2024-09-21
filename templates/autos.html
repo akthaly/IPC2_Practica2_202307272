@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="/static/img/PERFIL.png">
+</head>
+<body class="bg-gray-900 text-gray-100">
+
+  <!-- Contenido principal -->
+  {% extends 'navbar.html' %} 
+  {% block contenido %}
+  <div class="container mx-auto flex flex-wrap justify-center px-4">
+    {% for auto in listado %}
+    <div class="mx-auto mt-5 w-80 transform overflow-hidden rounded-lg bg-gray-800 shadow-md duration-300 hover:scale-105 hover:shadow-lg">
+      <img class="h-48 w-full object-cover object-center" src="{{ auto.imagen }}" alt="Imagen de {{ auto.marca }} {{ auto.modelo }}" />
+      <div class="p-4">
+        <h2 class="mb-2 text-lg font-medium text-gray-100">{{ auto.marca }} {{ auto.modelo }}</h2>
+        <p class="mb-2 text-base text-gray-300">{{ auto.descripcion }}</p>
+        <div class="flex items-center">
+          <p class="mr-2 text-lg font-semibold text-gray-100">Q{{ auto.precioUnitario }}.00</p>
+          <p class="text-base font-medium text-gray-500 line-through text-gray-400">{{ auto.precioAnterior }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  {% endblock %}
+</body>
+</html>

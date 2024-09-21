@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="/static/img/PERFIL.png">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-gray-900 text-gray-100 flex justify-center items-center h-screen">
+    <!-- Alertas -->
+    <div class="absolute top-0 left-0 right-0 px-4 py-2 z-50">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="p-4 rounded-md text-center
+                {% if category == 'success' %}
+                  bg-green-500 text-white
+                {% elif category == 'error' %}
+                  bg-red-500 text-white
+                {% endif %}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </div>
+
+  <!-- Formulario de inicio de sesión -->
+  <div class="w-full max-w-md bg-gray-800 rounded-lg shadow-lg p-8 opacity-75">
+    <h2 class="text-2xl font-bold text-center mb-6">Iniciar Sesión</h2>
+    
+    <form action="/login" method="POST" class="space-y-6">
+      <!-- Campo de Usuario -->
+      <div>
+        <label for="user" class="block text-gray-300 mb-2">Usuario</label>
+        <input type="text" id="user" name="user" required
+          class="w-full px-3 py-2 border border-gray-600 rounded-md bg-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300"
+          placeholder="Usuario">
+      </div>
+
+      <!-- Campo de Contraseña -->
+      <div>
+        <label for="password" class="block text-gray-300 mb-2">Contraseña</label>
+        <input type="password" id="password" name="password" required
+          class="w-full px-3 py-2 border border-gray-600 rounded-md bg-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300"
+          placeholder="********">
+      </div>
+
+      <!-- Botón de Iniciar Sesión -->
+      <div>
+        <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-300">
+          Iniciar Sesión
+        </button>
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>

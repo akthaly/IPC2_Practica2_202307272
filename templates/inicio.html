@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="/static/img/PERFIL.png">
+</head>
+<body class="bg-gray-900 text-gray-100">
+
+  <!-- Contenido principal -->
+  {% extends 'navbar.html' %} 
+  {% block contenido %}
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="p-4 mb-4 rounded-md 
+              {% if category == 'success' %}
+                bg-green-500 text-white
+              {% elif category == 'error' %}
+                bg-red-500 text-white
+              {% endif %}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+  </div>
+
+  <div class="container mx-auto flex flex-wrap justify-center px-4">
+    {% for auto in listado %}
+    <div class="mx-auto mt-5 w-80 transform overflow-hidden rounded-lg bg-gray-800 shadow-md duration-300 hover:scale-105 hover:shadow-lg">
+      <img class="h-48 w-full object-cover object-center" src="{{ auto.imagen }}" alt="Imagen de {{ auto.marca }} {{ auto.modelo }}" />
+      <div class="p-4">
+        <h2 class="mb-2 text-lg font-medium text-gray-100">{{ auto.marca }} {{ auto.modelo }}</h2>
+        <p class="mb-2 text-base text-gray-300">Descripción: {{ auto.descripcion }}</p>
+        <p class="mb-2 text-base text-gray-300">Cantidad: {{ auto.cantidad }}</p>
+        <p class="mb-2 text-base text-gray-300">ID Unico: {{ auto.idTipoAuto }}</p>
+        <div class="flex items-center">
+          <p class="mr-2 text-lg font-semibold text-gray-100">Precio Q {{ auto.precioUnitario }}.00</p>
+        </div>
+        <!-- Botón Eliminar dentro de un formulario -->
+        <form action="/eliminar" method="POST">
+          <input type="hidden" name="idEliminar" id="idEliminar" value="{{ auto.idTipoAuto }}">
+          <button type="submit" class="mt-4 w-full px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition duration-300">Eliminar</button>
+        </form>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  {% endblock %}
+</body>
+</html>

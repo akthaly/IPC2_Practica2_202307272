@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Super Autos GT</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Enlace al archivo CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-900 text-gray-100">
+
+  <!-- Navbar -->
+  <nav class="bg-gray-800 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <!-- Logo -->
+        <div class="flex-shrink-0">
+          <a href="#" class="text-xl font-bold text-gray-100 hover:text-indigo-400"></a>
+        </div>
+        <!-- Menú -->
+        <div class="hidden md:flex space-x-8 items-center">
+          <a href="/inicio" class="text-gray-300 hover:text-indigo-400 transition duration-300">Inicio</a>
+          <a href="/registro" class="text-gray-300 hover:text-indigo-400 transition duration-300">Registro</a>
+          <a href="/" class="text-gray-300 hover:text-indigo-400 transition duration-300">Salir</a>
+        </div>
+        <!-- Botón de Perfil -->
+        <div>
+          <button href="/" class="text-gray-100 hover:text-indigo-400 focus:outline-none">
+            <img src="{{ url_for('static', filename='img/PERFIL.png') }}" alt="Profile" class="h-11 w-11 mt-3 rounded-full object-cover">
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  {% block contenido %} {% endblock %}
+</body>
+</html>

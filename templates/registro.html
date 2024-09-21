@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="/static/img/PERFIL.png">
+</head>
+<body class="bg-gray-900 text-gray-100">
+  
+    {% extends 'navbar.html' %}
+
+    {% block contenido %}
+    <!-- Alertas -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="p-4 mb-4 rounded-md 
+              {% if category == 'success' %}
+                bg-green-500 text-white
+              {% elif category == 'error' %}
+                bg-red-500 text-white
+              {% endif %}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+  </div>
+
+  <!-- Formulario de Registro de Auto -->
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <h2 class="text-2xl font-bold text-gray-100 mb-6">Registro de autos</h2>
+    <form class="bg-gray-800 p-6 rounded-lg shadow-lg" action="/submit" method="POST">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Campo Marca -->
+        <div>
+          <label for="marca" class="block text-gray-300 mb-2">Marca</label>
+          <input type="text" id="marca" name="marca" class="w-full px-3 py-2 border border-gray-600 rounded-md bg-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300" placeholder="Marca del auto" required>
+        </div>
+        <!-- Campo Modelo -->
+        <div>
+          <label for="modelo" class="block text-gray-300 mb-2">Modelo</label>
+          <input type="text" id="modelo" name="modelo" class="w-full px-3 py-2 border border-gray-600 rounded-md bg-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300" placeholder="Modelo del auto" required>
+        </div>
+        <!-- Campo Precio -->
+        <div>
+          <label for="precioUnitario" class="block text-gray-300 mb-2">Precio</label>
+          <input type="number" id="precioUnitario" name="precioUnitario" class="w-full px-3 py-2 border border-gray-600 rounded-md bg-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300" placeholder="Precio unitario" required>
+        </div>
+        <!-- Campo para Subir Imagen -->
+        <div>
+          <label for="imagen" class="block text-gray-300 mb-2">Imagen</label>
+          <input type="text" id="imagen" name="imagen" class="w-full px-3 py-2 border border-gray-600 rounded-md bg-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300" placeholder="URL de Imagen" required>
+        </div>
+        <!-- Campo Número de Placa -->
+        <div>
+          <label for="placa" class="block text-gray-300 mb-2">Número de Placa</label>
+          <input type="text" id="idTipoAuto" name="idTipoAuto" class="w-full px-3 py-2 border border-gray-600 rounded-md bg-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300" placeholder="Número de placa" required>
+        </div>
+        <!-- Campo Cantidad -->
+        <div>
+          <label for="cantidad" class="block text-gray-300 mb-2">Cantidad</label>
+          <input type="number" id="cantidad" name="cantidad" class="w-full px-3 py-2 border border-gray-600 rounded-md bg-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300" placeholder="Cantidad de autos" required>
+        </div>
+        <!-- Campo Descripcion -->
+        <div >
+          <label for="descripcion" class="block text-gray-300 mb-2">Descripcion</label>
+          <input type="text" id="descripcion" name="descripcion" class="w-full h-32 px-3 py-2 border border-gray-600 rounded-md bg-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300" placeholder="Descripción del auto" required>
+        </div>
+      </div>
+      <div class="mt-6">
+        <button type="submit" class="w-ful px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition duration-300">Registrar Auto</button>
+      </div>
+    </form>
+    
+  </div>
+  {% endblock %}
+</body>
+</html>
